@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You 💖</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 25px;
+            animation: float 5s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-600px); opacity: 0; }
+        }
+
+        /* Intro */
+        .container {
+            transition: opacity 1s ease-in-out;
+        }
+
+        h1 {
+            color: #ff3366;
+            font-size: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #ff3366;
+            border-radius: 10px;
+            text-align: center;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            margin-top: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0px 0px 10px rgba(255, 51, 102, 0.5);
+        }
+
+        button:hover {
+            background-color: #cc2852;
+            box-shadow: 0px 0px 20px rgba(255, 51, 102, 0.8);
+        }
+
+        /* Stickman */
+        .stickman-container {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 250px;
+            margin-top: 50px;
+        }
+
+        .stickman {
+            position: absolute;
+            left: -50px;
+            bottom: 20px;
+            font-size: 50px;
+            animation: walk 4s linear forwards;
+        }
+
+        /* Open Button */
+        .open-btn {
+            display: none;
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            margin-top: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Letter */
+        .letter {
+            display: none;
+            font-size: 20px;
+            background: white;
+            padding: 25px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+            max-width: 80%;
+            margin: auto;
+            animation: fadeIn 2s ease-in-out, glow 3s infinite alternate;
+            position: relative;
+        }
+
+        /* Floating Hearts in Letter */
+        .letter::before, .letter::after {
+            content: "❤️";
+            position: absolute;
+            font-size: 25px;
+            animation: float 3s infinite alternate;
+            opacity: 0.8;
+        }
+
+        .letter::before {
+            left: -10px;
+            top: -10px;
+        }
+
+        .letter::after {
+            right: -10px;
+            bottom: -10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes walk {
+            0% { left: -50px; }
+            100% { left: 50%; transform: translateX(-50%); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0px 0px 15px rgba(255, 51, 102, 0.5); }
+            to { box-shadow: 0px 0px 25px rgba(255, 51, 102, 0.8); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Hearts -->
+    <script>
+        function createHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
+
+    <!-- Intro -->
+    <div class="container" id="intro">
+        <h1>Enter your name, my love. 💖</h1>
+        <input type="text" id="nameInput" placeholder="Type your name...">
+        <button onclick="startAnimation()">Submit</button>
+    </div>
+
+    <!-- Stickman -->
+    <div class="stickman-container" id="stickmanContainer">
+        <div class="stickman" id="stickman">👤💌</div>
+    </div>
+
+    <!-- Open Button -->
+    <button class="open-btn" id="openBtn" onclick="showLetter()">Open</button>
+
+    <!-- Letter -->
+    <div class="letter" id="letter">
+        <h2>Dear <span id="receiverName"></span>,</h2>
+        <p>
+            There are moments in life when we meet someone who changes everything.  
+            Someone whose presence alone makes every day brighter.  
+            Someone who unknowingly becomes a part of our heart.  
+            <br><br>
+            That someone is you.  
+            <br><br>
+            From the first time I saw you, I knew you were special.  
+            Your kindness, your laughter, your soul—everything about you is beautiful.  
+            I never told you before, but every moment spent with you  
+            has been a quiet, beautiful blessing in my life.  
+            <br><br>
+            I don't know if you will ever truly understand  
+            how much you mean to me,  
+            but if nothing else, I want you to know this:  
+            You are cherished. You are appreciated. You are loved. 
+            <br><br>
+            No matter where life takes us, no matter what happens,  
+            I will always be grateful for you.  
+            <br><br>
+            With all my heart,  
+            Someone Who Cares 💖
+        </p>
+    </div>
+
+    <script>
+        function startAnimation() {
+            let name = document.getElementById("nameInput").value;
+            if (name.trim() === "") {
+                alert("Please enter your name, my love! ❤️");
+                return;
+            }
+
+            document.getElementById("intro").style.display = "none";
+            document.getElementById("stickmanContainer").style.display = "block";
+
+            setTimeout(() => {
+                document.getElementById("openBtn").style.display = "block";
+            }, 4000);
+        }
+
+        function showLetter() {
+            let name = document.getElementById("nameInput").value;
+            document.getElementById("receiverName").innerText = name;
+            document.getElementById("letter").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
